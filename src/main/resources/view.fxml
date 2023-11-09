@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="programacionIII.veterinaria.controller.Controller">
+   <children>
+      <AnchorPane fx:id="login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" styleClass="loginPane" stylesheets="@styles.css">
+         <children>
+            <Label fx:id="txTest" layoutX="429.0" layoutY="286.0" text="Datos incorrectos" textFill="RED" visible="false">
+               <font>
+                  <Font name="Open Sans Bold" size="19.0" />
+               </font></Label>
+            <TextField fx:id="usuario" layoutX="392.0" layoutY="161.0" prefHeight="26.0" prefWidth="217.0" />
+            <Button fx:id="boton" defaultButton="true" layoutX="421.0" layoutY="314.0" mnemonicParsing="false" onAction="#loginButton" opacity="0.0" prefHeight="46.0" prefWidth="185.0" text="si" textFill="RED">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <PasswordField fx:id="contrasenia" layoutX="392.0" layoutY="260.0" prefHeight="26.0" prefWidth="217.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="menu" maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="650.0" styleClass="menuPane" stylesheets="@styles.css" visible="false">
+         <children>
+            <Button fx:id="desconectar" layoutX="43.0" layoutY="337.0" mnemonicParsing="false" onAction="#desconectarVeterinario" opacity="0.0" prefHeight="46.0" prefWidth="179.0" textFill="TRANSPARENT">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="registrarClienteMenu" layoutX="345.0" layoutY="111.0" mnemonicParsing="false" onAction="#mostrarRegistrarCliente" opacity="0.0" prefHeight="127.0" prefWidth="114.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="agendarCitaBoton" layoutX="43.0" layoutY="111.0" mnemonicParsing="false" onAction="#mostrarAgendar" opacity="0.0" prefHeight="127.0" prefWidth="114.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="elegirCitaBoton" layoutX="194.0" layoutY="111.0" mnemonicParsing="false" onAction="#mostrarCitas" opacity="0.0" prefHeight="127.0" prefWidth="114.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="registrarMascotaBoton" layoutX="492.0" layoutY="111.0" mnemonicParsing="false" onAction="#mostrarRegistrarMascota" opacity="0.0" prefHeight="127.0" prefWidth="114.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="BotonAccesoFacturas" layoutX="447.0" layoutY="337.0" mnemonicParsing="false" onAction="#mostrarFacturas" opacity="0.0" prefHeight="46.0" prefWidth="158.0" textFill="TRANSPARENT">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children></AnchorPane>
+      <AnchorPane fx:id="agendarCita" maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="650.0" styleClass="agendarPane" stylesheets="@styles.css" visible="false">
+         <children>
+            <DatePicker fx:id="fecha" layoutX="342.0" layoutY="77.0" promptText="Fecha de la cita" />
+            <TableView fx:id="tablaMascotas" layoutX="36.0" layoutY="160.0" onMouseClicked="#seleccionarMascota" prefHeight="157.0" prefWidth="583.0">
+              <columns>
+                  <TableColumn fx:id="columnCedula" prefWidth="75.0" text="Cédula" />
+                <TableColumn fx:id="columnNombre" prefWidth="75.0" text="Nombre" />
+                <TableColumn fx:id="columnEdad" prefWidth="75.0" text="Edad" />
+                  <TableColumn fx:id="columnSexo" prefWidth="75.0" text="Sexo" />
+                  <TableColumn fx:id="columnTipo" prefWidth="75.0" text="Tipo" />
+                  <TableColumn fx:id="columnRaza" prefWidth="75.0" text="Raza" />
+              </columns>
+            </TableView>
+            <Button fx:id="volverAgendar" layoutX="14.0" layoutY="338.0" mnemonicParsing="false" onAction="#volverMenu" opacity="0.0" prefHeight="46.0" prefWidth="114.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="agendar" layoutX="476.0" layoutY="337.0" mnemonicParsing="false" onAction="#agendarCita" opacity="0.0" prefHeight="46.0" prefWidth="155.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <MenuButton fx:id="menuVeterinario" layoutX="476.0" layoutY="122.0" mnemonicParsing="false" onAction="#seleccionarVeterinario" prefHeight="26.0" prefWidth="155.0" text="David Pareja">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#seleccionarVeterinario" text="David Pareja" />
+                <MenuItem mnemonicParsing="false" onAction="#seleccionarVeterinario" text="María Rodríguez" />
+                  <MenuItem mnemonicParsing="false" onAction="#seleccionarVeterinario" text="Carlos López" />
+                  <MenuItem mnemonicParsing="false" onAction="#seleccionarVeterinario" text="Ana Gómez" />
+              </items>
+            </MenuButton>
+         </children>
+      </AnchorPane>
+
+      <AnchorPane fx:id="registrarClienteVentana" maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="650.0" styleClass="clientePane" stylesheets="@styles.css" visible="false">
+         <children>
+            <TextField id="nombre" fx:id="nombre" layoutX="159.0" layoutY="118.0" prefHeight="3.0" prefWidth="217.0" />
+            <Button id="btnVolver" fx:id="botonVolverRegistrarCliente" defaultButton="true" layoutX="14.0" layoutY="335.0" mnemonicParsing="false" onAction="#volverMenu" opacity="0.0" prefHeight="51.0" prefWidth="114.0" text="si" textFill="RED">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <TextField id="cedula" fx:id="cedula" layoutX="159.0" layoutY="149.0" prefHeight="3.0" prefWidth="217.0" />
+            <TextField id="telefono" fx:id="telefono" layoutX="159.0" layoutY="181.0" prefHeight="3.0" prefWidth="217.0" />
+            <TextField id="correo" fx:id="correo" layoutX="159.0" layoutY="212.0" prefHeight="3.0" prefWidth="217.0" />
+            <TextField id="direccion" fx:id="direccion" layoutX="159.0" layoutY="243.0" prefHeight="3.0" prefWidth="217.0" />
+            <Button id="btnRegistrarCliente" fx:id="registrarCliente" defaultButton="true" layoutX="474.0" layoutY="335.0" mnemonicParsing="false" onAction="#registrarClienteFun" opacity="0.0" prefHeight="51.0" prefWidth="158.0" text="si" textFill="RED">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="citasVentana" maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="650.0" styleClass="citasPane" stylesheets="@styles.css" visible="false">
+         <children>
+            <Button fx:id="volverCitas" layoutX="14.0" layoutY="337.0" mnemonicParsing="false" onAction="#volverMenu" opacity="0.0" prefHeight="46.0" prefWidth="114.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <TableView fx:id="tablaCitas" layoutX="134.0" layoutY="105.0" prefHeight="218.0" prefWidth="383.0">
+              <columns>
+                <TableColumn fx:id="columnFecha" prefWidth="75.0" text="Fecha" />
+                <TableColumn fx:id="columnMascota" prefWidth="75.0" text="Mascota" />
+                  <TableColumn fx:id="columnVeterinario" prefWidth="78.0" text="Veterinario" />
+              </columns>
+            </TableView>
+            <Button fx:id="atenderBoton" layoutX="474.0" layoutY="337.0" mnemonicParsing="false" onAction="#atenderCita" opacity="0.0" prefHeight="46.0" prefWidth="155.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="historicoBoton" layoutX="222.0" layoutY="337.0" mnemonicParsing="false" onAction="#mostrarHistorico" opacity="0.0" prefHeight="46.0" prefWidth="168.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="atenderVentana" maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="650.0" styleClass="atenderPane" stylesheets="@styles.css" visible="false">
+         <children>
+            <Button id="btnRegistrarCliente" fx:id="registrarCliente1" defaultButton="true" layoutX="474.0" layoutY="335.0" mnemonicParsing="false" onAction="#finalizarCita" opacity="0.0" prefHeight="51.0" prefWidth="158.0" text="si" textFill="RED">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="btnVolver" fx:id="volverBotonAtencion" defaultButton="true" layoutX="14.0" layoutY="335.0" mnemonicParsing="false" onAction="#volverMenuCitas" opacity="0.0" prefHeight="51.0" prefWidth="114.0" text="si" textFill="RED">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <TextField fx:id="costosAdicionales" layoutX="342.0" layoutY="261.0" prefHeight="26.0" prefWidth="264.0" />
+            <TextArea fx:id="notasCita" layoutX="174.0" layoutY="108.0" prefHeight="127.0" prefWidth="432.0" />
+            <Button id="btnRegistrarCliente" fx:id="botonHistoriaClinica" defaultButton="true" layoutX="219.0" layoutY="335.0" mnemonicParsing="false" onAction="#mostrarVentanaNotas" opacity="0.0" prefHeight="51.0" prefWidth="223.0" text="si" textFill="RED">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="historicoVentana" maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="650.0" styleClass="historicoPane" stylesheets="@styles.css" visible="false">
+         <children>
+            <Button id="btnVolver" defaultButton="true" layoutX="14.0" layoutY="335.0" mnemonicParsing="false" onAction="#volverHistoricoCitas" opacity="0.0" prefHeight="51.0" prefWidth="114.0" text="si" textFill="RED">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <DatePicker fx:id="fechaInicial" layoutX="38.0" layoutY="145.0" />
+            <DatePicker fx:id="fechaFinal" layoutX="421.0" layoutY="145.0" onAction="#contarCitasVeterinario" />
+            <Label fx:id="citasSolicitadas" layoutX="264.0" layoutY="242.0" text="0" textFill="#4b9e84">
+               <font>
+                  <Font name="Open Sans Bold" size="29.0" />
+               </font>
+            </Label>
+            <MenuButton fx:id="menuVetHistorico" layoutX="203.0" layoutY="218.0" mnemonicParsing="false" onAction="#seleccionarVeterinarioHis" prefHeight="26.0" prefWidth="155.0" text="David Pareja">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#seleccionarVeterinarioHis" text="David Pareja" />
+                  <MenuItem mnemonicParsing="false" onAction="#seleccionarVeterinarioHis" text="María Rodríguez" />
+                  <MenuItem mnemonicParsing="false" onAction="#seleccionarVeterinarioHis" text="Carlos López" />
+                  <MenuItem mnemonicParsing="false" onAction="#seleccionarVeterinarioHis" text="Ana Gómez" />
+               </items>
+            </MenuButton>
+            <Label fx:id="citasAtendidas" layoutX="256.0" layoutY="277.0" text="0" textFill="#4b9e84">
+               <font>
+                  <Font name="Open Sans Bold" size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="registrarMascotaVentana" maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="650.0" styleClass="mascotaPane" stylesheets="@styles.css" visible="false">
+         <children>
+            <TextField id="nombre" fx:id="cedulaClienteMascota" layoutX="217.0" layoutY="118.0" prefHeight="3.0" prefWidth="217.0" />
+            <Button id="btnVolver" fx:id="botonVolverRegistrarMascota" defaultButton="true" layoutX="14.0" layoutY="335.0" mnemonicParsing="false" onAction="#volverMenu" opacity="0.0" prefHeight="51.0" prefWidth="114.0" text="si" textFill="RED">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <TextField id="cedula" fx:id="nombreMascota" layoutX="217.0" layoutY="149.0" prefHeight="3.0" prefWidth="217.0" />
+            <TextField id="telefono" fx:id="edadMascota" layoutX="217.0" layoutY="181.0" prefHeight="3.0" prefWidth="217.0" />
+            <TextField id="correo" fx:id="sexoMascota" layoutX="217.0" layoutY="212.0" prefHeight="3.0" prefWidth="217.0" promptText="Ingresa M ó F" />
+            <TextField id="direccion" fx:id="tipoMascota" layoutX="217.0" layoutY="244.0" prefHeight="3.0" prefWidth="217.0" />
+            <Button id="btnRegistrarCliente" fx:id="botonRegistrarMascota" defaultButton="true" layoutX="474.0" layoutY="335.0" mnemonicParsing="false" onAction="#registrarMascota" opacity="0.0" prefHeight="51.0" prefWidth="158.0" text="si" textFill="RED">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <TextField id="direccion" fx:id="RazaMascota" layoutX="217.0" layoutY="275.0" prefHeight="3.0" prefWidth="217.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="ventanaFacturas" maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="650.0" styleClass="facturasPane" stylesheets="@styles.css" visible="false">
+         <children>
+            <DatePicker fx:id="fechaFacturas" layoutX="445.0" layoutY="71.0" onAction="#filtrarFacturas" promptText="Fecha de la cita" />
+            <TableView fx:id="tablaFacturas" layoutX="36.0" layoutY="160.0" onMouseClicked="#seleccionarMascota" prefHeight="157.0" prefWidth="583.0" />
+            <Button fx:id="volverFacturasMenu" layoutX="14.0" layoutY="338.0" mnemonicParsing="false" onAction="#volverMenu" opacity="0.0" prefHeight="46.0" prefWidth="114.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="BotonImprimirFactura" layoutX="476.0" layoutY="337.0" mnemonicParsing="false" onAction="#mostrarDetallesCita" opacity="0.0" prefHeight="46.0" prefWidth="155.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="ventanaNotas" maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="650.0" styleClass="notasPane" stylesheets="@styles.css" visible="false">
+         <children>
+            <DatePicker fx:id="fechaNotas" layoutX="445.0" layoutY="71.0" onAction="#mostrarNotasVeterinarios" promptText="Fecha de la cita" />
+            <TableView fx:id="tablaNotas" layoutX="36.0" layoutY="160.0" onMouseClicked="#seleccionarMascota" prefHeight="157.0" prefWidth="583.0" />
+            <Button fx:id="volverNotasMenu" layoutX="14.0" layoutY="338.0" mnemonicParsing="false" onAction="#mostrarAtencion" opacity="0.0" prefHeight="46.0" prefWidth="114.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="ventanaFactura" maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="650.0" styleClass="facturaPane" stylesheets="@styles.css" visible="false">
+         <children>
+            <Button layoutX="14.0" layoutY="338.0" mnemonicParsing="false" onAction="#volverMenu" opacity="0.0" prefHeight="46.0" prefWidth="114.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="costoFac" layoutX="188.0" layoutY="90.0" prefHeight="35.0" prefWidth="185.0">
+               <font>
+                  <Font name="Open Sans Semibold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="observacionesFac" layoutX="188.0" layoutY="165.0" prefHeight="35.0" prefWidth="247.0">
+               <font>
+                  <Font name="Open Sans Semibold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="cedulaFac" layoutX="188.0" layoutY="130.0" prefHeight="35.0" prefWidth="274.0">
+               <font>
+                  <Font name="Open Sans Semibold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+
+
+   </children>
+</AnchorPane>

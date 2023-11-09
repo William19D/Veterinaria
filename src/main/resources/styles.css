@@ -1,0 +1,37 @@
+.loginPane{
+    -fx-background-image:url(loginPage.png)
+}
+
+.menuPane{
+    -fx-background-image:url(menu.png)
+}
+
+.agendarPane{
+    -fx-background-image:url(agendar.png)
+}
+.citasPane{
+    -fx-background-image:url(citas.png)
+}
+.notasPane{
+    -fx-background-image:url(notas.png)
+}
+.clientePane{
+    -fx-background-image:url(Cliente.png)
+}
+
+.facturaPane{
+    -fx-background-image:url(factura.png)
+}
+.mascotaPane {
+    -fx-background-image:url(registrarMascota.png)
+}
+
+.atenderPane {
+    -fx-background-image:url(atencion.png)
+}
+.facturasPane{
+    -fx-background-image:url(facturas.png)
+}
+.historicoPane{
+    -fx-background-image:url(historicoCitas.png)
+}
